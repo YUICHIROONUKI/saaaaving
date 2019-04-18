@@ -37,20 +37,25 @@
         type: 'line',
         data: {
         datasets: [{
-        data: []
-        }, {
-        data: []
+        data: [],
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        lineTension: 0 ,
+        label: '貯金'
         }]
         },
         options: {
         scales: {
         xAxes: [{
-        type: 'realtime' 
+        type: 'realtime',
+        time: {
+        unit: 'second'
+        } 
         }]
         },
         plugins: {
         streaming: {           
-        duration: 20000,    
+        duration: 15000,    
         refresh: 1000,      
         delay: 1000,        
         frameRate: 30,      
@@ -78,7 +83,6 @@
         var currentDateTime = new Date();
         var spendDate = currentDateTime - startDateTime;
         var currentSave = incomeSec * spendDate / 1000;
-        console.log(currentSave);
         var realTimeSave = currentSave + currentSaveMoney * 1;
         var href = window.location.href;
         $.ajax({

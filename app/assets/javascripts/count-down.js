@@ -3,13 +3,10 @@ $(document).on('turbolinks:load', function(){
 });
 function countDown() {
   var startDateTime = new Date();
-  console.log(startDateTime);
   var endDate = $('.count-down__time').attr("id");
   var jpn = 9 * 60 * 60 * 1000;
   var endDateTime = new Date(endDate);
-  console.log(endDateTime);
   var left = endDateTime - startDateTime - jpn;
-  console.log(left);
   var a_day = 24 * 60 * 60 * 1000;
   var d = Math.floor(left / a_day) 
   var h = Math.floor((left % a_day) / (60 * 60 * 1000)) 
