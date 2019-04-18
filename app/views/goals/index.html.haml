@@ -1,0 +1,120 @@
+
+.header
+  .header__user
+    .header__user__name
+      = current_user.name
+  .header__logo
+    saaaaving!
+  .header__edit
+    %ul.header__edit__user
+      user
+      %li.header__edit__user__list
+        = link_to 'ログアウト', destroy_user_session_path, method: :delete
+      %li.header__edit__user__list
+        = link_to '編集', edit_user_registration_path
+    %ul.header__edit__goal
+      目標設定
+      - if @goals != []
+        %li.header__edit__goal__destroy
+          = link_to '削除', "/goals/#{@goals[0].id}", class: "header__edit__goal", method: :delete
+      - else
+        %li.header__edit__goal__edit
+          = link_to '作成', new_goal_path, class: "header__edit__goal"
+- if @goals != []
+  .main-box
+    .target
+      目標：
+      = @target
+    .count-down
+      .count-down__logo
+        TIME LIMIT
+      .count-down__time{ id: @date}
+    .target-graph
+      %canvas#target-graph.chartjs-render-monitor{:height => "580", :style => "display: block; height: 37vh; width: 677px;", :width => "1354"}
+      %script
+          -# 使用するcanvasを指定
+        var ctx = document.getElementById('target-graph').getContext('2d');
+        var chart = new Chart(ctx, {
+          -# グラフタイプを指定
+        type: 'line',
+        data: {
+        datasets: [{
+        data: []
+        }, {
+        data: []
+        }]
+        },
+        options: {
+        scales: {
+        xAxes: [{
+          -# 今回はリアルタイムグラフなのでxAxesにrealtimeを指定
+        type: 'realtime' 
+        }]
+        },
+        plugins: {
+        streaming: {
+          -# その他読み込み時間間隔、スピードなどを指定            
+        duration: 20000,    
+        refresh: 1000,      
+        delay: 1000,        
+        frameRate: 30,      
+        pause: false,       
+        onRefresh: function(chart) {
+        chart.data.datasets[0].data.push({
+          -# x軸、y軸を指定
+        x: Date.now(),
+        y: countUp()
+        });
+        }
+        }
+        }
+        }
+        });
+        let a = 0;
+        function countUp() {
+        var currentSaveMoney = $('.save__current').attr('currentsave_id');
+        var incomeMonth = $('.save__current').attr('id');
+        var incomeYear = incomeMonth * 12;
+        var incomeDay = incomeYear / 365;
+        var incomeHour = incomeDay / 24;
+        var incomeSec = incomeHour / 3600;
+        var startDate = $('.save__current').attr('create_id');
+        var startDateTime = new Date(startDate);
+        var currentDateTime = new Date();
+        var spendDate = currentDateTime - startDateTime;
+        var currentSave = incomeSec * spendDate / 1000;
+        console.log(currentSave);
+        var realTimeSave = currentSave + currentSaveMoney * 1;
+        var href = window.location.href;
+        $.ajax({
+        type: 'GET',
+        url: href,
+        dataType: 'json'
+        }).done (function(data){
+        $('.save__current').text(realTimeSave + data.total + "円");
+        a = realTimeSave + data.total
+        });
+        return a;
+        };
+    .save
+      .save__logo
+        現在の貯金
+      .save__current{ id: @sallary, create_id: @created_at, currentsave_id: @current_save}
+      .save__goal
+        目標貯金額
+      .save__money
+        = @save.to_s + "円"
+    .form
+      = form_for @expenditure, html: {class: 'form__pay'} do |f|
+        .form__pay__money
+          = f.number_field :expenditure, class: 'form__pay__money__field'
+          = f.submit '支出', class: 'form__pay__money__submit'
+      = form_for @income, html: {class: 'form__get'}  do |f|
+        .form__get__money
+          = f.number_field :income, class: 'form__get__money__field'
+          = f.submit '収入', class: 'form__get__money__submit'
+- else
+  .main-box
+    .before-decide-target
+      目標を決めましょう！
+    = link_to '目標を決める', new_goal_path, class: 'new-goal'

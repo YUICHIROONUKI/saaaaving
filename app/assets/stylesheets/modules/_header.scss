@@ -1,0 +1,44 @@
+.header {
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  background-color: gray;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content:space-between;
+  color: white;
+  font-weight: bold;
+  line-height: 10vh;
+  padding: 0 1vh;
+  box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.6);
+  &__logo {
+    width: 50vw;
+    position: absolute;
+    left: 40vw;
+    font-size: 3rem;
+    color: gold;
+  }
+  &__edit {
+    display: flex;
+    &__user {
+      text-decoration: none;
+      margin-right: 2vw;
+      cursor: pointer;
+      color: $white;
+      list-style: none;
+      &__list {
+        @include toggle();
+      }
+    }
+    &__goal{
+      list-style: none;
+      cursor: pointer;
+      &__edit {
+        @include toggle();
+      }
+      &__destroy {
+        @include toggle();
+      }
+    }
+  }
+}

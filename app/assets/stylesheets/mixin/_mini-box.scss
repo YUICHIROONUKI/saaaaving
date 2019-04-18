@@ -1,0 +1,38 @@
+@mixin black-box() {
+  width: 47vw;
+  height: 37vh;
+  float: left;
+  background-color: $black;
+  font-size: 3em;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 5px 5px $shadow;
+}
+
+@mixin white-box() {
+  width: 47vw;
+  height: 37vh;
+  float: left;
+  border-radius: 0.5rem;
+  background-color: $white;
+  box-shadow: 5px 5px 5px 5px $shadow;
+}
+
+@mixin number-form() {
+  width: 20vw;
+  height: 10vh;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: $white;
+}
+
+@mixin number-form-button() {
+  width: 10vw;
+  height: 10vh;
+  color: $white;
+}
+
+@mixin number-form-frame() {      
+  height: 10vh;
+  margin-top: 5.6vh;
+  padding-left: 7vw;
+}

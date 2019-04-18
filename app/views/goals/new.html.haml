@@ -1,0 +1,13 @@
+.goal
+  .goal__box
+    %p.goal__box__text
+      目標を決めましょう！
+    = form_for @goal, html: {class: "goal__box__form" } do |f|
+      = f.text_field :target, placeholder: '目標を書いてください', class: 'goal__box__form__text'
+      = f.number_field :target_save, placeholder: '目標金額を書いてください(半角数字)', class: 'goal__box__form__target-save'
+      = f.number_field :average_income, placeholder: '月の平均収入を記入してください(半角数字)', class: 'goal__box__form__average-income'
+      = f.number_field :current_save, placeholder: '現在の貯金額を記入してください', class: 'goal__box__form__current-save'
+      .goal__box__form__target-date-comment
+        目標到達日を設定してください
+      = f.datetime_field :target_date, class: 'goal__box__form__target-date'
+      = f.submit '決定', class: 'goal__box__form__submit'

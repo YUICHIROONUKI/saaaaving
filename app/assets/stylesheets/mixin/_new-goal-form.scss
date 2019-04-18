@@ -1,0 +1,8 @@
+@mixin new_goal_form() {
+  width: 100%;
+  height: 10vh;
+  background-color: $white;
+  border-radius: 5px;
+  border: 1px solid $black;
+  margin-bottom: 2vh;
+}

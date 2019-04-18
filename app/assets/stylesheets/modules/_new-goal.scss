@@ -1,0 +1,78 @@
+
+.goal {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 10vh;
+  background-image: url("/images/VainDarkIbizanhound-size_restricted.gif");
+  background-size: cover;
+  &__box {
+    top: 10vh;
+    width: 50vw;
+    height: 80vh;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    background: -moz-linear-gradient(#ebe7e2, #f5bf0d);
+    background: -webkit-linear-gradient(#ebe7e2, #f5bf0d);
+    background: linear-gradient(to right, #ebe7e2, #f5bf0d);
+    color: #FFF;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px 5px $shadow;
+    &__text{
+      font-size: 3rem;
+      width: 50vw;
+      text-align: center;
+    }
+    &__form {
+      width: 100%;
+      height: 100%;
+      color: $black;
+      font-size: 2rem;
+      &__text {
+        @include new_goal_form();
+      }
+      &__target-save {
+        @include new_goal_form();
+      }
+      &__average-income {
+        @include new_goal_form();
+      }
+      &__current-save {
+        @include new_goal_form();
+      }
+      &__target-date-comment {
+        color: $gray;
+      }
+      &__target-date {
+        @include new_goal_form();
+        color: $black;
+      }
+      &__submit {
+        @include submit_button();
+      }
+    }
+  }
+}
+.goal__box__text {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+}
+
+.goal__box__text:before, .goal__box__text:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 2px;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+}
+
+.goal__box__text:before {
+  left: 5vw;
+}
+.goal__box__text:after {
+  right: 5vw;
+}
