@@ -19,6 +19,5 @@ function countDown() {
   $(".count-down__time").text(d + '日' + h + '時間' + m + '分' + s + '秒');
     setTimeout('countDown()', 1000);
   if (d === 0 && h === 0 && m === 0 && s === 0) {
-    alert('ご静聴ありがとうございました')；
   };
 }
