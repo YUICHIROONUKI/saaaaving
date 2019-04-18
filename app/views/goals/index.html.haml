@@ -32,10 +32,8 @@
     .target-graph
       %canvas#target-graph.chartjs-render-monitor{:height => "580", :style => "display: block; height: 37vh; width: 677px;", :width => "1354"}
       %script
-          -# 使用するcanvasを指定
         var ctx = document.getElementById('target-graph').getContext('2d');
         var chart = new Chart(ctx, {
-          -# グラフタイプを指定
         type: 'line',
         data: {
         datasets: [{
@@ -47,13 +45,11 @@
         options: {
         scales: {
         xAxes: [{
-          -# 今回はリアルタイムグラフなのでxAxesにrealtimeを指定
         type: 'realtime' 
         }]
         },
         plugins: {
-        streaming: {
-          -# その他読み込み時間間隔、スピードなどを指定            
+        streaming: {           
         duration: 20000,    
         refresh: 1000,      
         delay: 1000,        
@@ -61,7 +57,6 @@
         pause: false,       
         onRefresh: function(chart) {
         chart.data.datasets[0].data.push({
-          -# x軸、y軸を指定
         x: Date.now(),
         y: countUp()
         });
