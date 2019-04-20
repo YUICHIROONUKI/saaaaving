@@ -1,0 +1,22 @@
+.header
+  .header__user
+    .header__user__name
+      = current_user.name
+  .header__logo
+    saaaaving!
+  .header__edit
+    %ul.header__edit__user
+      user
+      %li.header__edit__user__list
+        = link_to 'ログアウト', destroy_user_session_path, method: :delete
+      %li.header__edit__user__list
+        = link_to '編集', edit_user_registration_path
+    %ul.header__edit__goal
+      目標設定
+      - if @goals != []
+        %li.header__edit__goal__destroy
+          .header__edit__goal
+            削除
+      - else
+        %li.header__edit__goal__edit
+          = link_to '作成', new_goal_path, class: "header__edit__goal"

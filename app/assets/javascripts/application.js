@@ -14,6 +14,7 @@
 //= require Chart.min
 //= require chartjs-plugin-streaming
 //= require jquery
+//= require bpopup
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

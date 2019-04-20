@@ -1,0 +1,21 @@
+.delete-popup
+  .delete-popup__text
+    本当に削除してもよろしいですか？
+  %ul.delete-popup__link
+    %li.delete-popup__link__responce
+      = link_to 'はい', "/goals/#{current_user.goals.ids[0]}", class: "delete-popup__link__responce__yes", method: :delete
+    %li.delete-popup__link__responce
+      = link_to 'いいえ', root_path, class: "delete-popup__link__responce__no"
+%script
+  ;(function($) {
+  $(document).ready(function() {
+  $('.header__edit__goal__destroy').bind('click', function(e) {
+  e.preventDefault();
+  $('.delete-popup').bPopup({
+  speed: 650,
+  transition: 'slideIn',
+  transitionClose: 'slideBack'
+  });
+  });
+  });
+  })(jQuery);
